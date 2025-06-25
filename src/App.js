@@ -3,7 +3,7 @@ import {
 User, Target, Trophy, Coins, Settings, MessageCircle, Star, Sword, Heart, Brain, Eye, Zap,
 Plus, CheckCircle, Clock, Award, Users, DollarSign, Lightbulb, Compass, X,
 ChevronRight, Home, RefreshCw, Save, AlertCircle, Loader, Database, Link, Check,
-Off, CloudOff, Cloud, Edit3, Trash2
+WifiOff, CloudOff, Cloud, Edit3, Trash2
 } from 'lucide-react';
 
 const LevelUpApp = () => {
