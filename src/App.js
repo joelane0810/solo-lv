@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 User, Target, Trophy, Coins, Settings, MessageCircle, Star, Sword, Heart, Brain, Eye, Zap,
-Calendar, Plus, CheckCircle, Clock, Award, Users, DollarSign, Lightbulb, Compass, X,
-ChevronRight, Home, Bell, RefreshCw, Save, AlertCircle, Loader, Database, Link, Check,
-Wifi, WifiOff, CloudOff, Cloud, Edit3, Trash2
+Plus, CheckCircle, Clock, Award, Users, DollarSign, Lightbulb, Compass, X,
+ChevronRight, Home, RefreshCw, Save, AlertCircle, Loader, Database, Link, Check,
+Off, CloudOff, Cloud, Edit3, Trash2
 } from 'lucide-react';
 
 const LevelUpApp = () => {
@@ -44,7 +44,6 @@ stats: { WILL: 10, PHY: 10, MEN: 10, AWR: 10, EXE: 10 }
 
 const [quests, setQuests] = useState([]);
 const [achievements, setAchievements] = useState([]);
-const [goals, setGoals] = useState({ mission: '', yearly: [], quarterly: [], monthly: [] });
 const [resources, setResources] = useState([
 { name: "Xã hội", icon: Users, color: "from-blue-500 to-blue-600", textColor: "text-blue-400", level: 1, progress: 0, description: "Xây dựng quan hệ, kết nối" },
 { name: "Tài chính", icon: DollarSign, color: "from-green-500 to-green-600", textColor: "text-green-400", level: 1, progress: 0, description: "Tiền bạc, đầu tư, tài sản" },
@@ -98,14 +97,14 @@ if (savedSettings.sheetId && savedSettings.apiKey) {
 }, []);
 
 // Auto-sync setup
-useEffect(() => {
+useEffect(() => {useEffect(() => {
 if (settings.autoSync && isConnected && settings.sheetId && settings.apiKey) {
 const interval = setInterval(() => {
 syncFromSheets();
 }, settings.syncInterval * 60 * 1000);
 return () => clearInterval(interval);
 }
-}, [settings.autoSync, settings.syncInterval, isConnected]);
+}, [settings.autoSync, settings.syncInterval, isConnected]);}, [settings.autoSync, settings.syncInterval, isConnected, syncFromSheets]);
 
 // Google Sheets API Functions
 const makeSheetRequest = async (url, options = {}) => {
@@ -782,7 +781,7 @@ const EmptyState = ({ icon: Icon, title, description, action }) => (
 
 const ConnectionIndicator = () => (
 <div className={`flex items-center space-x-2 text-xs px-3 py-1 rounded-full transition-colors ${ isConnected ? 'bg-green-500/20 text-green-400' : connectionTested ? 'bg-red-500/20 text-red-400' : 'bg-gray-500/20 text-gray-400' }`}>
-{isConnected ? <Cloud size={12} /> : connectionTested ? <CloudOff size={12} /> : <WifiOff size={12} />}
+{isConnected ? <Cloud size={12} /> : connectionTested ? <CloudOff size={12} /> : <Off size={12} />}
 <span>
 {isConnected ? 'Đã kết nối' : connectionTested ? 'Lỗi kết nối' : 'Chưa kết nối'}
 </span>
